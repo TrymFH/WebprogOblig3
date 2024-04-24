@@ -2,9 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bestilling av kinobiletter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body>
 
+<div class="container">
+    <h1>Bestilling av Kinobiletter</h1>
+    <div class ="row">
+        <div class="col-md-4">
+            <form class="form">
+                <h3>Registrer:</h3>
+                <div class="form-group">
+                    <label for="tittel">Velg film</label>
+                    <div class = "dropdown" id="tittel"></div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="antall">Antall</label><input type="number" class = "form-control" id="antall"/>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label for="fornavn">Fornavn</label><input type="text" class = "form-control" id="fornavn"/>
+                    <br>
+                    <label for="etternavn"> Etternavn</label><input type="text" class = "form-control" id="etternavn"/>
+                <br>
+                    <label for="telefonnr">Telefonnr</label><input type="text" class = "form-control" id="telefonnr"/>
+                <br>
+                    <label for="epost">Type</label><input type="text" class = "form-control" id="epost"/>
+                    <br>
+                </div>
+
+            </form>
+            <button class="btn btn-primary" onclick="regBillett()">Registrer</button><br/>
+        </div>
+        <div class="col-md-8">
+            <br>
+            <h3>Alle billettene:</h3>
+            <br>
+            <div id="bilene" class ="table-responsive"></div>
+            <button class ="btn btn-danger" onclick="slettAlle()">Slett alle</button>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
