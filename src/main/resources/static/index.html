@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body>
-
+<!-- Lager en container fro å kunne style med bootstrap. -->
 <div class="container">
     <h1>Bestilling av Kinobiletter</h1>
+    <!-- Setter opp bootstrap systemet med to kolonner. Bruker style form og form group for hver av input feltene + feil span. -->
     <div class ="row">
         <div class="col-md-4">
             <form class="form">
@@ -18,8 +19,9 @@
                 <br>
                 <div class="form-group">
                     <label for="film">Velg film: </label>
+                    <!-- Lager en nedtrekksliste -->
                     <select id="film" name="cars">
-                        <option>Velg film her</option>
+                        <option value="">Velg film her</option>
                         <option value="Inception">Inception</option>
                         <option value="Cars">Cars</option>
                         <option value="Django">Django</option>
@@ -28,18 +30,22 @@
                         <option value="Dark Knight">Dark Knight</option>
                         <option value="Dune">Dune</option>
                     </select>
+                    <br>
+                    <span id="feilFilm" style="color: red"></span>
                 </div>
                 <br>
+                <!-- For hvert input-felt nedenfor kaller jeg en valideringsfunk på onchange. -->
                 <div class="form-group">
+                    <!-- Gjør at input bare tar imot tall -->
                     <label for="antall">Antall</label><input type="number" maxlength="2" size="2" class = "form-control" id="antall" onchange="validerAntall(this.value)"/>
                     <span id="feilAntall" style="color: red"></span>
                     <br>
                 </div>
                 <div class="form-group">
-                    <label for="fornavn">Fornavn</label><input type="text" class = "form-control" id="fornavn" onchange="validerNavn(this.value)"/>
-                    <span id="feilForavn" style="color: red"></span>
+                    <label for="fornavn">Fornavn</label><input type="text" class = "form-control" id="fornavn" onchange="validerFornavn()"/>
+                    <span id="feilFornavn" style="color: red"></span>
                     <br>
-                    <label for="etternavn"> Etternavn</label><input type="text" class = "form-control" id="etternavn" onchange="validerNavn(this.value)"/>
+                    <label for="etternavn"> Etternavn</label><input type="text" class = "form-control" id="etternavn" onchange="validerEtternavn(this.value)"/>
                     <span id="feilEtternavn" style="color: red"></span>
                 <br>
                     <label for="telefonnr">Telefonnr</label><input type="text" class = "form-control" id="telefonnr" onchange="validerTelefonnr(this.value)"/>
@@ -51,13 +57,15 @@
                 </div>
 
             </form>
-            <button class="btn btn-primary" onclick="regBillett()">Registrer</button><br/>
+            <!-- Denne skal validere alle en gang til for å så lagre hvis alle stemmer. -->
+            <button class="btn btn-primary" onclick="validerOgLagreKunde()">Kjøp billett</button><br/>
         </div>
         <div class="col-md-8">
             <br>
             <h3>Alle billettene:</h3>
             <br>
             <div id="billettene" class ="table-responsive"></div>
+            <!-- Denne knappen kaller en funksjon som sletter innholdet i tabellen. -->
             <button class ="btn btn-danger" onclick="slettAlle()">Slett alle</button>
 
         </div>

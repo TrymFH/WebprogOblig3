@@ -2,7 +2,7 @@ $(function(){
     hentAlle();
 })
 
-function regBillett (){
+function lagreBillett (){
     const billett = {
         film: $("#film").val(),
         antall: $("#antall").val(),
@@ -47,3 +47,97 @@ function slettAlle (){
         });
     }
 }
+
+function validerFornavn(){
+    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regexp.test($("#fornavn").val());
+    if(!ok){
+        $("#feilFornavn").html("Fornavnet må bestå av 2 til 20 bokstaver");
+        return false;
+    }
+    else{
+        $("#feilFornavn").html("");
+        return true;
+    }
+}
+
+function validerEtternavn(etternavn){
+    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regexp.test(etternavn);
+    if(!ok){
+        $("#feilEtternavn").html("Etternavnet må bestå av 2 til 20 bokstaver");
+        return false;
+    }
+    else{
+        $("#feilEtternavn").html("");
+        return true;
+    }
+}
+
+function validerAntall(antall){
+    const regexp =  /^[1-9][0-9]?$|^100$/;
+    const ok = regexp.test(antall);
+    if(!ok){
+        $("#feilAntall").html("Skriv inn et tall mellom 1 og 100");
+        return false;
+    }
+    else{
+        $("#feilAntall").html("");
+        return true;
+    }
+}
+
+function validerTelefonnr(telefonnr){
+    const regexp =  /^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/;
+    const ok = regexp.test(telefonnr);
+    if(!ok){
+        $("#feilTelefonnr").html("Skriv inn et gyldig telefonnummer");
+        return false;
+    }
+    else{
+        $("#feilTelefonnr").html("");
+        return true;
+    }
+}
+
+function validerEpost(epost){
+    const regexp =  /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})([a-z]{2,8})?$/;
+    const ok = regexp.test(epost);
+    if(!ok){
+        $("#feilEpost").html("Skriv inn en gyldig epost");
+        return false;
+    }
+    else{
+        $("#feilEpost").html("");
+        return true;
+    }
+}
+
+
+function validerFilm (){
+    if($("#film").val()===""){
+        $("#feilFilm").html("Du må velge en film")
+        return false
+    } else {
+        $("#feilFilm").html("")
+        return true;
+    }
+}
+
+function validerOgLagreKunde(){
+    const filmOK = validerFilm();
+    const antallOK = validerAntall($("#antall").val());
+    const fornavnOK = validerFornavn($("#fornavn").val());
+    const etternavnOK = validerEtternavn($("#etternavn").val());
+    const telefonnrOK = validerTelefonnr($("#telefonnr").val());
+    const epostOK = validerEpost($("#epost").val());
+
+    if (filmOK && antallOK && fornavnOK && etternavnOK && telefonnrOK && epostOK){
+        lagreBillett();
+    }
+}
+
+
+
+
+
