@@ -13,18 +13,19 @@ public class KinoRepository {
     @Autowired
     private JdbcTemplate db;
 
+    //Her kommuniserer vi til H2 databasen vha db hvor vi presiserer sql setningen vår samt verdiene som skal gis.
     public void lagreBillett (Billett innBillett) {
         String sql = "INSERT INTO Billett (film, antall, fornavn, etternavn, telefonnr, epost) VALUES (?,?,?,?,?,?)";
         db.update(sql, innBillett.getFilm(), innBillett.getAntall(), innBillett.getFornavn(), innBillett.getEtternavn(), innBillett.getTelefonnr(), innBillett.getEpost());
 
     }
-
+    //Her kommuniserer vi til H2 databasen vha db hvor vi presiserer sql setningen vår og henter tabellen.
     public List<Billett> hentAlleBilletter (){
         String sql = "SELECT * FROM Billett ORDER BY etternavn";
             List<Billett> alleBilletter = db.query(sql, new BeanPropertyRowMapper(Billett.class));
             return alleBilletter;
     }
-
+    //Her kommuniserer vi til H2 databasen vha db hvor vi presiserer sql setningen vår, denne skal tømme tabellen.
     public void slettAlleBilletter (){
         String sql = "DELETE FROM Billett";
         db.update(sql);

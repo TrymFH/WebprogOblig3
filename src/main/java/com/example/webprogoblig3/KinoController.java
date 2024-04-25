@@ -13,16 +13,19 @@ public class KinoController {
     @Autowired
     private KinoRepository rep;
 
+    //Kommuniserer med repository for å lagre billetten.
     @GetMapping ("/lagre")
     public void lagreBillett (Billett innBillett){
         rep.lagreBillett(innBillett);
     }
 
+    //Kommuniserer med repository for å hente billettene.
     @PostMapping("/hentAlle")
     public List<Billett> hentAlle (){
         return rep.hentAlleBilletter();
     }
 
+    //Kommuniserer med repository for å slette alle billetter.
     @GetMapping("/slettAlle")
     public void Slettalle (){
          rep.slettAlleBilletter();

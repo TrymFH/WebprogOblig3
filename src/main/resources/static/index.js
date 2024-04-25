@@ -1,7 +1,4 @@
-$(function(){
-    hentAlle();
-})
-
+//Denne funksjonen lagrer verdiene til input feltet og gjør det til et objekt. Sender deretter objektet til serveren før den tømmer feltene.
 function lagreBillett (){
     const billett = {
         film: $("#film").val(),
@@ -24,12 +21,14 @@ function lagreBillett (){
     $("#epost").val("");
 }
 
+// Denne funksjonen henter listen av objekter og aktiverer en funk som skal formatere listen.
 function hentAlle (){
     $.post("/hentAlle", function (billetter){
         formaterBilletter(billetter);
     });
 }
 
+//Her formteres listen til en streng som til slutt blir lagt ut til en div som skal presentere alle billettene.
 function formaterBilletter (billetter){
     let ut = "<table class='table table-striped'><tr><th>Film</th><th>Antall biletter</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>Epost</th></tr>";
     for (const billett of billetter) {
@@ -39,6 +38,7 @@ function formaterBilletter (billetter){
     $("#billettene").html(ut);
 }
 
+//Denne funksjonen sletter objektene i listen.
 function slettAlle (){
     const ok = confirm("Er du sikker på at du vil slette alle?");
     if (ok){
@@ -48,6 +48,7 @@ function slettAlle (){
     }
 }
 
+// Funksjonene nedenfor der det står noe med validering validerer input for å passe på at man ikke kan oppgi urimelige input.
 function validerFornavn(){
     const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regexp.test($("#fornavn").val());
@@ -123,6 +124,8 @@ function validerFilm (){
         return true;
     }
 }
+
+//Denne funksjonen sjekker at alle input valideringer er godkjent før den lagrer objektet.
 
 function validerOgLagreKunde(){
     const filmOK = validerFilm();
