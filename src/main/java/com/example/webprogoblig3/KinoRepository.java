@@ -13,12 +13,12 @@ public class KinoRepository {
     @Autowired
     private JdbcTemplate db;
 
-    public void lagrKunde (Billett innBillett){
+    public void lagreKunde (Billett innBillett){
         String sql = "INSERT INTO Billett (film, antall, fornavn, etternavn, telefonnr, epost) VALUES (?,?,?,?,?,?)";
         db.update(sql, innBillett.getFilm(), innBillett.getAntall(), innBillett.getFornavn(), innBillett.getEtternavn(), innBillett.getTelefonnr(), innBillett.getEpost());
     }
 
-    public List<Billett> henAlleBilletter (){
+    public List<Billett> hentAlleBilletter (){
         String sql = "SELECT * FROM Billett";
         List<Billett> alleBilletter = db.query(sql, new BeanPropertyRowMapper(Billett.class));
         return  alleBilletter;
