@@ -1,3 +1,7 @@
+$(function (){
+    hentAlle();
+});
+
 //Denne funksjonen lagrer verdiene til input feltet og gjør det til et objekt. Sender deretter objektet til serveren før den tømmer feltene.
 function lagreBillett (){
     const billett = {
