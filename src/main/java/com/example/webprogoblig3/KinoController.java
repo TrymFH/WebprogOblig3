@@ -11,11 +11,11 @@ import java.util.List;
 public class KinoController {
 
     @Autowired
-    KinoRepository rep;
+    private KinoRepository rep;
 
     @GetMapping ("/lagre")
     public void lagreBillett (Billett innBillett){
-        rep.lagreKunde(innBillett);
+        rep.lagreBillett(innBillett);
     }
 
     @PostMapping("/hentAlle")
