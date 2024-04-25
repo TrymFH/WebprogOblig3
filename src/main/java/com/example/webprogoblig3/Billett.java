@@ -2,7 +2,6 @@ package com.example.webprogoblig3;
 
 public class Billett {
 
-    int id;
     String film;
     int antall;
 
@@ -70,13 +69,5 @@ public class Billett {
 
     public void setEpost(String epost) {
         this.epost = epost;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
